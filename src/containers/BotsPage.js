@@ -1,12 +1,29 @@
 import React from "react";
+import BotCollection from './BotCollection'
+import YourBotArmy from './YourBotArmy'
+
 
 class BotsPage extends React.Component {
-  //start here with your code for step one
+
+  constructor(){
+    super()
+    this.state = {
+      army : []
+    }
+  }
+
+  addToArmy = (e, id) => {
+    console.log(e.currentTarget)
+    console.log(id)
+    debugger
+  }
+
 
   render() {
     return (
       <div>
-        {/* put your components here */}
+        <YourBotArmy />
+        <BotCollection addToArmy={this.addToArmy}/>
       </div>
     );
   }
