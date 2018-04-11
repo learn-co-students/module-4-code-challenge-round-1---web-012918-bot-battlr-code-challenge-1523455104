@@ -26,7 +26,10 @@ const BotCard = props => {
         key={bot.id} id={bot.id}
         onClick={(event) => {
           // console.log("in card", event.target.parentNode.parentNode.id);
-          props.clickHandler(event.target.parentNode.parentNode.id)}}
+          // props.clickHandler(event.target.parentNode.parentNode.id)
+          //this should pass back one bot that was click on pass back to bot collection. in bot collection view will be toggles to this bot 
+          props.clickDetail()
+        }}
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
