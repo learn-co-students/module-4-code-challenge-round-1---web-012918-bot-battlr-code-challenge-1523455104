@@ -17,9 +17,9 @@ class BotsPage extends React.Component {
   }
 
   addToPersonal = (bot) => {
-    this.state.personal.includes(bot) ? null : this.setState({
+    return this.state.personal.includes(bot) ? null : this.setState({
       personal: [...this.state.personal, bot]
-    }, () => console.log(this.state.personal))
+    })
   }
 
   render() {
