@@ -1,4 +1,5 @@
 import React from "react";
+import BotSpecs from './BotSpecs'
 
 const BotCard = props => {
 
@@ -20,16 +21,9 @@ const BotCard = props => {
       botType = <div />;
   }
 
-  const addBotToArmy = (e) => {
-    if (props.addBot && props.botIsInArmy){
-      if (props.botIsInArmy(props.bot)) {
-        console.log('beeep boooop: already enlisted');
-      } else {
-          props.addBot(props.bot);
-      }
-    } else {
-      props.removeFromArmy(props.bot)
-    }
+  const renderBotSpecs = (e) => {
+    // handles bot clicks both in collection to show spec and in army to remove
+    (props.showBotSpecs) ? props.showBotSpecs(props.bot) : props.removeFromArmy(props.bot);
   }
 
   return (
@@ -37,7 +31,7 @@ const BotCard = props => {
       <div
         className="ui card"
         key={bot.id}
-        onClick={addBotToArmy}
+        onClick={renderBotSpecs}
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
