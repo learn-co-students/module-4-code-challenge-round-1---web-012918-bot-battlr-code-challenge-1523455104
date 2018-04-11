@@ -1,11 +1,11 @@
 import React from "react";
 
 const BotCard = props => {
-  const { bot } = props;
+
 
   let botType;
 
-  switch (bot.bot_class) {
+  switch (props.datum.bot_class) {
     case "Assault":
       botType = <i className="icon military" />;
       break;
@@ -19,38 +19,41 @@ const BotCard = props => {
       botType = <div />;
   }
 
+
   return (
-    <div className="ui column">
+    <div className="ui column" id={props.datum.id}>
       <div
         className="ui card"
-        key={bot.id}
-        onClick={() => console.log("add code to connect event listener")}
+        key={props.datum.id}
+        onClick={props.handleClick}
+        id={props.datum.id}
+        name={props.datum.yourBot}
       >
         <div className="image">
-          <img alt="oh no!" src={bot.avatar_url} />
+          <img alt="oh no!" src={props.datum.avatar_url} id={props.datum.id}/>
         </div>
         <div className="content">
-          <div className="header">
-            {bot.name} {botType}
+          <div className="header" id={props.datum.id}>
+            {props.datum.name} {props.datumType}
           </div>
 
-          <div className="meta text-wrap">
-            <small>{bot.catchphrase}</small>
+          <div className="meta text-wrap" id={props.datum.id}>
+            <small>{props.datum.catchphrase}</small>
           </div>
         </div>
-        <div className="extra content">
+        <div className="extra content" id={props.datum.id}>
           <span>
-            <i className="icon heartbeat" />
-            {bot.health}
+            <i className="icon heartbeat" id={props.datum.id}/>
+            {props.datum.health}
           </span>
 
           <span>
-            <i className="icon lightning" />
-            {bot.damage}
+            <i className="icon lightning" id={props.datum.id}/>
+            {props.datum.damage}
           </span>
           <span>
-            <i className="icon shield" />
-            {bot.armor}
+            <i className="icon shield" id={props.datum.id}/>
+            {props.datum.armor}
           </span>
         </div>
       </div>
