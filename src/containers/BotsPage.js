@@ -8,8 +8,8 @@ class BotsPage extends React.Component {
       super()
       this.state={
         bots: [],
-        clickedBots: []
-
+        clickedBots: [],
+        clickedBotsPass:[]
       }
     }
 
@@ -28,16 +28,22 @@ class BotsPage extends React.Component {
           let removeBotID = [...this.state.clickedBots]
           let index=removeBotID.indexOf(event)
           removeBotID.splice(index,1)
-          console.log("removeBotID",removeBotID);
+          let passBots = removeBotID.map(id=>{return this.state.bots[parseInt(id)-1]})
+          console.log("removeBotID",passBots);
           this.setState({
-            clickedBots: removeBotID
+            clickedBots: removeBotID,
+            clickedBotsPass: passBots
           })
         } else {
           let addBotID = [...this.state.clickedBots]
           addBotID.push(event)
-          console.log("addBotID",addBotID);
+          // console.log("addBotID",parseInt(addBotID[0])-1);
+          // console.log("addBotID",this.state.bots[0]);
+          let passBots = addBotID.map(id=>{return this.state.bots[parseInt(id)-1]})
+          // console.log("addBotID",passBots);
           this.setState({
-            clickedBots: addBotID
+            clickedBots: addBotID,
+            clickedBotsPass: passBots
           })
         }
       }
@@ -46,7 +52,7 @@ class BotsPage extends React.Component {
   render() {
     return (
       <div>
-        <YourBotArmy clickedBots={this.state.clickedBots} clickHandler={this.clickHandler}/>
+        <YourBotArmy clickedBotsPass={this.state.clickedBotsPass} clickHandler={this.clickHandler}/>
         <BotCollection bots={this.state.bots} clickHandler={this.clickHandler}/>
       </div>
     );
