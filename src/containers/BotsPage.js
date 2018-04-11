@@ -1,18 +1,41 @@
 import React from "react";
 import BotCollection from './BotCollection'
 import YourBotArmy from './YourBotArmy'
+import BotSpecs from '../components/BotSpecs'
 
 class BotsPage extends React.Component {
   constructor(){
     super()
     this.state = {
       allBots:[],
-      army:[]
+      army:[],
+      enlistingBot: false
     }
   }
 
-  clickHandler = (event) => {
+  showAllBotsAgain = () => {
+    this.setState({
+      enlistingBot: false
+    })
+  }
+
+  showBotSpecs = (id) => {
+
+    let botToShow = this.state.allBots.filter((bot) => {
+        return bot.id === id
+      })[0]
+    return <BotSpecs bot={botToShow} backHandler={this.showAllBotsAgain} enlistHanlder={this.clickHandler}/>
+  }
+
+  enlistingBotHandler = (event) => {
     let id = parseInt(event.target.parentNode.parentNode.id)
+    this.setState({
+      enlistingBot: id
+    })
+  }
+
+  clickHandler = (event) => {
+    let id = parseInt(event.target.id)
 
     if(this.state.army.filter((bot)=> bot.id === id).length === 1){
       return console.log("bot already in army")
@@ -60,7 +83,7 @@ class BotsPage extends React.Component {
     return (
       <div>
         <YourBotArmy army={this.state.army} clickHandler={this.removeHandler}/>
-        <BotCollection allBots={this.state.allBots} clickHandler={this.clickHandler}/>
+        {!this.state.enlistingBot ? <BotCollection allBots={this.state.allBots} clickHandler={this.enlistingBotHandler}/> : this.showBotSpecs(this.state.enlistingBot)}
       </div>
     );
   }
