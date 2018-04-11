@@ -19,50 +19,31 @@ class BotsPage extends React.Component {
     })
   }
 
-  showBotSpecs = (id) => {
+  showBotSpecs = (bot) => {
 
-    let botToShow = this.state.allBots.filter((bot) => {
-        return bot.id === id
-      })[0]
-    return <BotSpecs bot={botToShow} backHandler={this.showAllBotsAgain} enlistHanlder={this.clickHandler}/>
+    return <BotSpecs bot={bot} backHandler={this.showAllBotsAgain} enlistHanlder={this.clickHandler}/>
   }
 
-  enlistingBotHandler = (event) => {
-    let id = parseInt(event.target.parentNode.parentNode.id)
+  enlistingBotHandler = (bot) => {
     this.setState({
-      enlistingBot: id
+      enlistingBot: bot
     })
   }
 
-  clickHandler = (event) => {
-    let id = parseInt(event.target.id)
-
-    if(this.state.army.filter((bot)=> bot.id === id).length === 1){
+  clickHandler = (bot) => {
+    if(this.state.army.indexOf(bot) > -1){
       return console.log("bot already in army")
     }
-
-    let botToAdd = this.state.allBots.filter((bot) => {
-        return bot.id === id
-      })[0]
-
     let growingArmy = [...this.state.army]
-    growingArmy.push(botToAdd)
-
+    growingArmy.push(bot)
     this.setState({
       army: growingArmy
     })
-
   }
 
-  removeHandler = (event) => {
-    let id = parseInt(event.target.parentNode.parentNode.id)
-    let botToRemove = this.state.army.filter((bot) => {
-        return bot.id === id
-      })[0]
+  removeHandler = (bot) => {
     let shrinkingArmy = [...this.state.army]
-
-    shrinkingArmy.splice(shrinkingArmy.indexOf(botToRemove), 1)
-
+    shrinkingArmy.splice(shrinkingArmy.indexOf(bot), 1)
     this.setState({
       army: shrinkingArmy
     })
