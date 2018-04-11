@@ -24,7 +24,11 @@ const BotCard = props => {
       <div
         className="ui card"
         key={bot.id}
-        onClick={() => console.log("add code to connect event listener")}
+        onClick={
+          if(props.inArmy===true){
+            props.destroyBot(this.bot)
+          } else {props.clicker(this.bot)}
+        }
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
