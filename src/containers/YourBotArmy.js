@@ -2,7 +2,9 @@ import React from "react";
 import BotCard from "../components/BotCard";
 
 class YourBotArmy extends React.Component {
-  //your bot army code here...
+  constructor(props) {
+    super(props)
+  }
 
   render(){
     return (
@@ -10,7 +12,7 @@ class YourBotArmy extends React.Component {
         <div className="ui five column grid">
           <div className="row bot-army-row">
             {/*...and here...*/}
-            Your Bot Army
+            {this.props.botsInArmy.map(bot => <BotCard key={bot.id} bot={bot} handleCardClick={this.props.handleCardClick} /> )}
           </div>
         </div>
       </div>
