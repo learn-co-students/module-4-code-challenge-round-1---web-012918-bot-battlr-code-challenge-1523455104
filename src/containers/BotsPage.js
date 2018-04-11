@@ -16,6 +16,7 @@ class BotsPage extends React.Component {
 
   }
 
+//i spent so much time just to realize that i forgot to pass the handleclick function as props to your bot army.
 
   handleClick = (e) => {
     const thisBot = e.target.id
