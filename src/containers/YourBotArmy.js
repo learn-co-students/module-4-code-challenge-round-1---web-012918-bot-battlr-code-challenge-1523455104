@@ -9,14 +9,15 @@ class YourBotArmy extends React.Component {
       <div className="ui segment inverted olive bot-army">
         <div className="ui five column grid">
           <div className="row bot-army-row">
-            {/*...and here...*/}
-            Your Bot Army
+          {this.props.bots.length > 0 ? this.props.bots.map(bot => {
+            return <BotCard bot={bot} key={bot.id} addToPersonal={this.props.addToPersonal}/>
+          }) : null}
           </div>
         </div>
       </div>
     );
   }
-  
+
 };
 
 export default YourBotArmy;
