@@ -1,4 +1,5 @@
 import React from 'react'
+import "../SearchBar.css";
 
 class SearchBar extends React.Component {
   state = {
@@ -13,8 +14,9 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    return <div>
-      search by name: <input onChange={this.handleChange} type="text" value={this.state.query} />
+    return <div className="search-container">
+      search by name: <input id="search-bar" onChange={this.handleChange} type="text" value={this.state.query}/>
+      <img className="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"/>
     </div>
   }
 }
