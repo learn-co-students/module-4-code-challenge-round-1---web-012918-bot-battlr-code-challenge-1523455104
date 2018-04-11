@@ -1,11 +1,13 @@
 import React from "react";
 import BotCollection from './BotCollection'
 import YourBotArmy from './YourBotArmy'
+import SearchBar from './SearchBar'
 
 class BotsPage extends React.Component {
   state = {
     bots: [],
-    personal: []
+    personal: [],
+    query: ''
   }
 
   componentDidMount = () => {
@@ -22,11 +24,22 @@ class BotsPage extends React.Component {
     })
   }
 
+  filteredBots = () => {
+    return this.state.bots.filter(bot => bot.name.toLowerCase().includes(this.state.query))
+  }
+
+  updateQuery = (searchTerm) => {
+    this.setState({
+      query: searchTerm.toLowerCase()
+    }, ()=> console.log(this.state.query))
+  }
+
   render() {
     return (
       <div>
-        <YourBotArmy bots={this.state.personal} addToPersonal={this.addToPersonal}/>
-        <BotCollection bots={this.state.bots} addToPersonal={this.addToPersonal}/>
+        <SearchBar query={this.state.query} updateQuery={this.updateQuery}/>
+        <YourBotArmy bots={this.state.personal}/>
+        <BotCollection bots={this.filteredBots()} addToPersonal={this.addToPersonal}/>
       </div>
     );
   }
