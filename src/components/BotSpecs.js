@@ -61,7 +61,7 @@ const BotSpecs = props => {
             <button
               className="ui button fluid"
               onClick={() =>
-                console.log('connect this to a function that shows all bots')
+                console.log('pass up as callback to state in bots page and then add to checked array which will render in army bots')
               }
             >
               Go Back
@@ -70,7 +70,7 @@ const BotSpecs = props => {
               className="ui button fluid"
               onClick={() =>
                 console.log(
-                  "connect this to a function that adds this bot to your bot army list"
+                  "This will toggle state in bot colelction and the ternary will change the view back to the colection view."
                 )
               }
             >
