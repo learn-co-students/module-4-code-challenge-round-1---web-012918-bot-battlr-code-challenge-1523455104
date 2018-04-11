@@ -3,12 +3,13 @@ import React from "react";
 import BotCollection from './BotCollection.js'
 import YourBotArmy from './YourBotArmy.js'
 import BotSpecs from '../components/BotSpecs.js'
+import Filter from './Filter.js'
 
 class BotsPage extends React.Component {
   state = {
     allBots: [],
     selectedBots: [],
-    showingDetails: false
+    showingDetailsOf: ""
   }
 
   componentDidMount() {
@@ -19,21 +20,28 @@ class BotsPage extends React.Component {
     }))
   }
 
-  // showBotsCollection = () => {
-  //   return <BotCollection bots={this.state.allBots} clickHandler={this.showBotDetails}/>
-  // }
+  showBotsCollection = () => {
+    return <BotCollection bots={this.state.allBots} clickHandler={this.toggleShowingDetails}/>
+  }
 
-  // showBotDetails = (eventBot) => {
-  //   debugger
-  //   this.setState({showingDetails: !this.state.showingDetails})
-  //   return <BotSpecs bot={eventBot}/>
-  // }
+  toggleShowingDetails = (eventBot) => {
+    this.setState({showingDetailsOf: eventBot})
+  }
+
+  showBotDetails = () => {
+    return <BotSpecs bot={this.state.showingDetailsOf} addBot={this.addBot} goBack={this.goBack}/>
+  }
+
+  goBack = () => {
+    this.setState({showingDetailsOf: ""})
+  }
 
   addBot = (eventBot) => {
     const selectedBot = this.state.allBots.filter( bot => bot.id === eventBot.id)[0]
     if (!this.state.selectedBots.includes(selectedBot)) {
       this.setState({
-        selectedBots: [...this.state.selectedBots, selectedBot]
+        selectedBots: [...this.state.selectedBots, selectedBot],
+        showingDetailsOf: ""
       })
     }
   }
@@ -52,8 +60,7 @@ class BotsPage extends React.Component {
     return (
       <div>
         <YourBotArmy bots={this.state.selectedBots} clickHandler={this.removeBot}/>
-        <BotCollection bots={this.state.allBots} clickHandler={this.addBot}/>
-        {/* {this.state.showingDetails ? this.showBotDetails() : this.showBotsCollection()} */}
+        {this.state.showingDetailsOf != "" ? this.showBotDetails() : this.showBotsCollection()}
       </div>
     );
   }
