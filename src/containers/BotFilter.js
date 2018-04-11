@@ -3,7 +3,7 @@ import React from "react";
 const	BotFilter = () =>{
 
 		return(
-			<h1>something here</h1>
+			<h1>Need to build out options filter</h1>
 		)
 	}
 
