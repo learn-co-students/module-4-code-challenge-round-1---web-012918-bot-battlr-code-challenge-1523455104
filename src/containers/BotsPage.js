@@ -17,7 +17,6 @@ class BotsPage extends React.Component {
 
   //I need to make this method add to the botArmy. I have made my Callback. Couldn't really think of how to get bot object from grandchild comp but got name
   botCardClick = (newBot) => {
-    // debugger;
     //do nothing if it includes
     if (!this.state.botArmy.includes(newBot)) {
       //if it is not included, add object to array
@@ -27,7 +26,6 @@ class BotsPage extends React.Component {
 
   removeBotClick = (removeBot) => {
     console.log('in botspage.js here\'s the argument ', removeBot)
-    // debugger;
     let index = this.state.botArmy.indexOf(removeBot);
 
     if (index !== -1) {

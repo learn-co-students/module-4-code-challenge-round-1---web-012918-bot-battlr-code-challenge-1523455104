@@ -23,7 +23,7 @@ const BotCard = props => {
     //Check to see what data is available to me? Programs are about data and behavior.
     if (props.clicker) {
       props.clicker(props.bot)
-    } else {
+    } else if (props.removeClicker) {
       props.removeClicker(props.bot)
     }
   }
