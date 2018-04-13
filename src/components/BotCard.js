@@ -20,8 +20,12 @@ const BotCard = props => {
   }
 
   function handleClick(event){
-    let botName = event.target.parentElement.parentElement.querySelector('.header').innerHTML.split(' ')[0]
-    props.clicker(botName)
+    //Check to see what data is available to me? Programs are about data and behavior.
+    if (props.clicker) {
+      props.clicker(props.bot)
+    } else {
+      props.removeClicker(props.bot)
+    }
   }
 
   return (

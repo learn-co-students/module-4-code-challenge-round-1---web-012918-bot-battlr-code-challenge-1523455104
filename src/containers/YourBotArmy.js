@@ -1,5 +1,5 @@
 import React from "react";
-// import BotCard from "../components/BotCard";
+import BotCard from "../components/BotCard";
 
 class YourBotArmy extends React.Component {
   //your bot army code here...
@@ -15,6 +15,12 @@ class YourBotArmy extends React.Component {
   // renderBotArmy = () => {
   //   return this.state.botsArmy.map(bot => <BotCard clicker={() => console.log("add code to connect event listener from passed down your bot army")}/>)
   // }
+  renderBotArmy = () => {
+    // debugger;
+    let botArmy = this.props.army
+    let removeClicker = this.props.removeClicker
+    return botArmy.map(bot => <BotCard key={bot.id} bot={bot} removeClicker={removeClicker}/>)
+  }
 
   render(){
     return (
@@ -23,7 +29,7 @@ class YourBotArmy extends React.Component {
           <div className="row bot-army-row">
             {/*...and here...*/}
             Your Bot Army
-            {/* {this.renderBotArmy()} */}
+            {this.renderBotArmy()}
           </div>
         </div>
       </div>
