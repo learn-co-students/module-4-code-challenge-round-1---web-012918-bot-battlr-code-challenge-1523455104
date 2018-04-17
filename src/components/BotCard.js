@@ -1,4 +1,5 @@
 import React from "react";
+// import BotSpecs from "./BotSpecs"
 
 const BotCard = props => {
   const { bot } = props;
@@ -21,8 +22,17 @@ const BotCard = props => {
 
   function handleClick(event){
     //Check to see what data is available to me? Programs are about data and behavior.
-    if (props.clicker) {
-      props.clicker(props.bot)
+
+    //REFACTOR OUT
+    // if (props.clicker) {
+    //   props.clicker(props.bot)
+    // } else if (props.removeClicker) {
+    //   props.removeClicker(props.bot)
+    // }
+    //REFACTOR OUT
+    //Can have two parents... different props are passed down.
+    if (props.specsViewClick) {
+      props.specsViewClick(props.bot)
     } else if (props.removeClicker) {
       props.removeClicker(props.bot)
     }
@@ -33,7 +43,7 @@ const BotCard = props => {
       <div
         className="ui card"
         key={bot.id}
-        onClick={handleClick}//() => console.log("add code to connect event listener")}
+        onClick={handleClick}
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />

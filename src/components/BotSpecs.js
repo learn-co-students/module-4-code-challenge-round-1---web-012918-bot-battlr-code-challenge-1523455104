@@ -19,6 +19,13 @@ const BotSpecs = props => {
       botType = <div />;
   }
 
+  //Define functions. Arrow and regular
+  const goBack = (event) => props.goBack(event)
+
+  function enlistBot(event) {
+    props.enlistBotClicker(bot)
+  }
+
   return (
     <div className="ui segment">
       <div className="ui two column centered grid">
@@ -60,19 +67,15 @@ const BotSpecs = props => {
             </div>
             <button
               className="ui button fluid"
-              onClick={() =>
+              onClick={goBack}/*() =>
                 console.log('connect this to a function that shows all bots')
-              }
+              }*/
             >
               Go Back
             </button>
             <button
               className="ui button fluid"
-              onClick={() =>
-                console.log(
-                  "connect this to a function that adds this bot to your bot army list"
-                )
-              }
+              onClick={enlistBot}
             >
               Enlist
             </button>
